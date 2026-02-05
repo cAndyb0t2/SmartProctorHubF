@@ -16,10 +16,13 @@ function showPage(pageId) {
 function showLoginForm(role) {
     if (role === 'student') {
         showPage('studentLoginPage');
+        startLoginCarousel('studentLoginPage');
     } else if (role === 'proctor') {
         showPage('proctorLoginPage');
+        startLoginCarousel('proctorLoginPage');
     } else if (role === 'admin') {
         showPage('adminLoginPage');
+        startLoginCarousel('adminLoginPage');
     }
 }
 
@@ -295,6 +298,35 @@ function generateReport(reportType) {
     alert(`Generating ${reportType} report\nDate: ${date}\n\nReport will be downloaded shortly.`);
 }
 
+// ===== LOGIN CAROUSEL FUNCTIONS =====
+let loginCarouselIntervals = {};
+
+function startLoginCarousel(pageId) {
+    // Clear any existing interval for this page
+    if (loginCarouselIntervals[pageId]) {
+        clearInterval(loginCarouselIntervals[pageId]);
+    }
+    
+    const page = document.getElementById(pageId);
+    if (!page) return;
+    
+    const slides = page.querySelectorAll('.login-slide');
+    if (slides.length === 0) return;
+    
+    // Set first slide as active
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[0].classList.add('active');
+    
+    let currentIndex = 0;
+    
+    // Auto-rotate slides every 4 seconds
+    loginCarouselIntervals[pageId] = setInterval(() => {
+        slides[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % slides.length;
+        slides[currentIndex].classList.add('active');
+    }, 4000);
+}
+
 // Setup page load animations
 document.addEventListener('DOMContentLoaded', function() {
     const elements = document.querySelectorAll('.info-box, .exam-card, .assignment-item, .monitoring-item, .transaction-item');
@@ -302,4 +334,90 @@ document.addEventListener('DOMContentLoaded', function() {
         el.style.opacity = '0';
         el.style.animation = `slideInUp 0.5s ease ${index * 0.1}s forwards`;
     });
+    
+    // Initialize gallery
+    initGallery();
 });
+
+// ===== PHOTO GALLERY FUNCTIONS =====
+let currentSlideIndex = 1;
+let autoSlideInterval;
+
+function initGallery() {
+    showSlide(currentSlideIndex);
+    startAutoSlide();
+    
+    // Add keyboard navigation
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'ArrowLeft') {
+            changeSlide(-1);
+        } else if (event.key === 'ArrowRight') {
+            changeSlide(1);
+        }
+    });
+}
+
+function changeSlide(n) {
+    clearInterval(autoSlideInterval);
+    showSlide(currentSlideIndex += n);
+    startAutoSlide();
+}
+
+function currentSlide(n) {
+    clearInterval(autoSlideInterval);
+    showSlide(currentSlideIndex = n);
+    startAutoSlide();
+}
+
+function showSlide(n) {
+    const slides = document.querySelectorAll('.gallery-slide');
+    const dots = document.querySelectorAll('.dot');
+    
+    if (!slides.length) return;
+    
+    if (n > slides.length) {
+        currentSlideIndex = 1;
+    }
+    if (n < 1) {
+        currentSlideIndex = slides.length;
+    }
+    
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+    
+    if (slides[currentSlideIndex - 1]) {
+        slides[currentSlideIndex - 1].classList.add('active');
+    }
+    if (dots[currentSlideIndex - 1]) {
+        dots[currentSlideIndex - 1].classList.add('active');
+    }
+}
+
+function startAutoSlide() {
+    autoSlideInterval = setInterval(function() {
+        currentSlideIndex++;
+        showSlide(currentSlideIndex);
+    }, 5000); // Change slide every 5 seconds
+}
+// ===== TRANSACTION MODAL FUNCTIONS =====
+function openTransactionModal() {
+    const modal = document.getElementById('transactionModal');
+    if (modal) {
+        modal.classList.add('active');
+    }
+}
+
+function closeTransactionModal() {
+    const modal = document.getElementById('transactionModal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
+}
+
+// Close modal when clicking outside of it
+window.onclick = function(event) {
+    const modal = document.getElementById('transactionModal');
+    if (event.target === modal) {
+        modal.classList.remove('active');
+    }
+}

@@ -176,6 +176,51 @@ body {
     }
 }
 
+.login-carousel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.login-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.login-slide.active {
+    opacity: 1;
+}
+
+.login-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .library-background {
     width: 100%;
     background: url('logo.png') no-repeat center center;
@@ -1219,6 +1264,189 @@ table tr:hover {
     gap: 15px;
 }
 
+/* ===== PHOTO GALLERY SECTION ===== */
+.gallery-section {
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+    text-align: center;
+}
+
+.gallery-section h2 {
+    font-size: 36px;
+    color: var(--primary-color);
+    margin-bottom: 40px;
+    font-weight: 700;
+}
+
+.gallery-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.gallery-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    background: #000;
+}
+
+.gallery-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+}
+
+.gallery-slide.fade {
+    opacity: 0;
+    animation: fadeIn 0.6s;
+}
+
+.gallery-slide.active {
+    opacity: 1;
+}
+
+.gallery-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 15px 20px;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.gallery-nav {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.gallery-nav:hover {
+    background: var(--primary-light);
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-nav.prev {
+    order: -1;
+}
+
+.gallery-nav.next {
+    order: 1;
+}
+
+.gallery-dots {
+    text-align: center;
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 6px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: var(--primary-color);
+}
+
+.dot:hover {
+    background-color: var(--primary-light);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-wrapper {
+        height: 300px;
+    }
+    
+    .gallery-container {
+        gap: 10px;
+    }
+    
+    .gallery-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    .gallery-section h2 {
+        font-size: 28px;
+    }
+    
+    .slide-caption {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-wrapper {
+        height: 250px;
+    }
+    
+    .gallery-nav {
+        width: 35px;
+        height: 35px;
+        font-size: 18px;
+    }
+    
+    .gallery-section h2 {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+    
+    .slide-caption {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
 .transaction-item {
     display: flex;
     justify-content: space-between;
@@ -1227,6 +1455,101 @@ table tr:hover {
     background: #f5f5f5;
     border-radius: 6px;
     border-left: 4px solid #c41e3a;
+}
+
+/* ===== TRANSACTION MODAL ===== */
+.view-transactions-btn {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.view-transactions-btn:hover {
+    background: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(45, 80, 22, 0.3);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: slideUp 0.3s ease;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #000;
+}
+
+.modal-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-size: 24px;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+    
+    .close {
+        right: 15px;
+        top: 10px;
+    }
 }
 
 .transaction-info h4 {

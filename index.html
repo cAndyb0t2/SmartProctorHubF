@@ -46,7 +46,17 @@
     <div id="studentLoginPage" class="page login-page">
         <div class="login-container">
             <div class="login-left">
-                <div class="library-background"></div>
+                <div class="login-carousel">
+                    <div class="login-slide fade-slide">
+                        <img src="image.png" alt="Image 1">
+                    </div>
+                    <div class="login-slide fade-slide">
+                        <img src="img2.png" alt="Image 2">
+                    </div>
+                    <div class="login-slide fade-slide">
+                        <img src="clgB.png" alt="Image 3">
+                    </div>
+                </div>
             </div>
             <div class="login-right">
                 <div class="login-content">
@@ -76,7 +86,6 @@
                     </form>
                     
                     <div class="login-footer">
-                        <p>Don't have an account? <a href="#" onclick="showSignup()">Sign up</a></p>
                         <p><a href="#" onclick="forgotPassword()">Forgot Password?</a></p>
                     </div>
                 </div>
@@ -88,14 +97,24 @@
     <div id="proctorLoginPage" class="page login-page">
         <div class="login-container">
             <div class="login-left">
-                <div class="library-background"></div>
+                <div class="login-carousel">
+                    <div class="login-slide fade-slide">
+                        <img src="img2.png" alt="Image 2">
+                    </div>
+                    <div class="login-slide fade-slide">
+                        <img src="clgB.png" alt="Image 3">
+                    </div>
+                    <div class="login-slide fade-slide">
+                        <img src="image.png" alt="Image 1">
+                    </div>
+                </div>
             </div>
             <div class="login-right">
                 <div class="login-content">
                     <button class="back-btn" onclick="backToRoleSelection()">← Back</button>
                     <div class="logo">
                         <div class="logo-circle" style="background: linear-gradient(135deg, #5a8c3e 0%, #3d7024 100%);">
-                            <span class="logo-text">SKIT</span>
+                            <span class="logo-text"><img src=logo.png width="150%" height="150%"></span>
                         </div>
                     </div>
                     <h1>Proctor Login</h1>
@@ -129,7 +148,17 @@
     <div id="adminLoginPage" class="page login-page">
         <div class="login-container">
             <div class="login-left">
-                <div class="library-background"></div>
+                <div class="login-carousel">
+                    <div class="login-slide fade-slide">
+                        <img src="clgB.png" alt="Image 3">
+                    </div>
+                    <div class="login-slide fade-slide">
+                        <img src="image.png" alt="Image 1">
+                    </div>
+                    <div class="login-slide fade-slide">
+                        <img src="img2.png" alt="Image 2">
+                    </div>
+                </div>
             </div>
             <div class="login-right">
                 <div class="login-content">
@@ -191,6 +220,34 @@
                     <p>Sri Krishna Institute of Technology</p>
                     <button class="hero-btn" onclick="showPage('studentPage')">Enter Dashboard</button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Photo Gallery Section -->
+        <div class="gallery-section">
+            <h2>Campus Highlights</h2>
+            <div class="gallery-container">
+                <button class="gallery-nav prev" onclick="changeSlide(-1)">❮</button>
+                <div class="gallery-wrapper">
+                    <div class="gallery-slide fade">
+                        <img src="pics/j1.png" alt="Campus Image 1">
+                        <div class="slide-caption">Campus View 1</div>
+                    </div>
+                    <div class="gallery-slide fade">
+                        <img src="pics/j2.png" alt="Campus Image 2">
+                        <div class="slide-caption">Campus View 2</div>
+                    </div>
+                    <div class="gallery-slide fade">
+                        <img src="pics/j3.png" alt="Campus Image 3">
+                        <div class="slide-caption">Campus View 3</div>
+                    </div>
+                </div>
+                <button class="gallery-nav next" onclick="changeSlide(1)">❯</button>
+            </div>
+            <div class="gallery-dots">
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
             </div>
         </div>
 
@@ -299,22 +356,22 @@
                             </tr>
                             <tr>
                                 <td>BCS21001</td>
-                                <td>John Doe</td>
-                                <td>john.doe@skit.edu.in</td>
+                                <td>K Hiresh Rohan</td>
+                                <td>khireshrohan@skit.org.in</td>
                                 <td>92%</td>
                                 <td><span class="status-badge active">Active</span></td>
                             </tr>
                             <tr>
                                 <td>BCS21002</td>
-                                <td>Jane Smith</td>
-                                <td>jane.smith@skit.edu.in</td>
+                                <td>Karuna M M</td>
+                                <td>karunamm@skit.org.in</td>
                                 <td>88%</td>
                                 <td><span class="status-badge active">Active</span></td>
                             </tr>
                             <tr>
                                 <td>BCS21003</td>
-                                <td>Alex Johnson</td>
-                                <td>alex.johnson@skit.edu.in</td>
+                                <td>Kallegowda DR</td>
+                                <td>Kallegowdadr@skit.org.in</td>
                                 <td>85%</td>
                                 <td><span class="status-badge inactive">Inactive</span></td>
                             </tr>
@@ -442,22 +499,31 @@
 
                 <div class="content-section">
                     <h2>Recent Transactions</h2>
-                    <div class="transactions-list">
-                        <div class="transaction-item">
-                            <div class="transaction-info">
-                                <h4>Fee Payment by K Herish Rohan</h4>
-                                <p>Date: Feb 3, 2026 | Transaction ID: TXN123456</p>
-                            </div>
-                            <div class="transaction-amount">+₹3,50,000</div>
-                        </div>
-                        <div class="transaction-item">
-                            <div class="transaction-info">
-                                <h4>Fee Payment by Kallegowda DR</h4>
-                                <p>Date: Feb 2, 2026 | Transaction ID: TXN123455</p>
-                            </div>
-                            <div class="transaction-amount">+₹2,50,000</div>
-                        </div>
+                    <button class="view-transactions-btn" onclick="openTransactionModal()">View All Transactions</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Transaction Modal -->
+    <div id="transactionModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeTransactionModal()">&times;</span>
+            <h2>Recent Transactions</h2>
+            <div class="transactions-list">
+                <div class="transaction-item">
+                    <div class="transaction-info">
+                        <h4>Fee Payment by K Herish Rohan</h4>
+                        <p>Date: Feb 3, 2026 | Transaction ID: TXN123456</p>
                     </div>
+                    <div class="transaction-amount">+₹3,50,000</div>
+                </div>
+                <div class="transaction-item">
+                    <div class="transaction-info">
+                        <h4>Fee Payment by Kallegowda DR</h4>
+                        <p>Date: Feb 2, 2026 | Transaction ID: TXN123455</p>
+                    </div>
+                    <div class="transaction-amount">+₹2,50,000</div>
                 </div>
             </div>
         </div>
