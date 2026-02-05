@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Proctor Hub - Sri Krishna Institute of Technology</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main Login Page - Role Selection -->
+    <div id="mainLoginPage" class="page active">
+        <div class="role-selection-container">
+            <div class="role-overlay">
+                <div class="role-content">
+                    <div class="logo">
+                        <div class="logo-circle">
+                            <span ><img src=logo.png width="150%" height="150%"></span>
+                        </div>
+                    </div>
+                    <h1>SMART PROCTOR HUB</h1>
+                    <p class="subtitle">Sri Krishna Institute of Technology</p>
+                    
+                    <div class="role-selection">
+                        <p class="role-title">Select Your Role to Continue</p>
+                        <div class="role-buttons">
+                            <button class="role-btn student-role" onclick="showLoginForm('student')">
+                                <div class="role-icon">👨‍🎓</div>
+                                <span>Student</span>
+                            </button>
+                            <button class="role-btn proctor-role" onclick="showLoginForm('proctor')">
+                                <div class="role-icon">👨‍🏫</div>
+                                <span>Proctor</span>
+                            </button>
+                            <button class="role-btn admin-role" onclick="showLoginForm('admin')">
+                                <div class="role-icon">👨‍💼</div>
+                                <span>Admin</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Login Page -->
+    <div id="studentLoginPage" class="page login-page">
+        <div class="login-container">
+            <div class="login-left">
+                <div class="library-background"></div>
+            </div>
+            <div class="login-right">
+                <div class="login-content">
+                    <button class="back-btn" onclick="backToRoleSelection()">← Back</button>
+                    <div class="logo">
+                        <div class="logo-circle">
+                            <span class="logo-text">SKIT</span>
+                        </div>
+                    </div>
+                    <h1>Student Login</h1>
+                    <p class="subtitle">Sri Krishna Institute of Technology</p>
+                    
+                    <form id="studentLoginForm" class="login-form" onsubmit="handleLogin(event, 'student')">
+                        <div class="form-group">
+                            <label for="studentEmail">Email Address</label>
+                            <input type="email" id="studentEmail" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="studentPassword">Password</label>
+                            <input type="password" id="studentPassword" name="password" placeholder="Enter your password" required>
+                        </div>
+                        <div class="form-group checkbox">
+                            <input type="checkbox" id="studentRemember" name="remember">
+                            <label for="studentRemember">Remember me</label>
+                        </div>
+                        <button type="submit" class="login-btn">LOGIN</button>
+                    </form>
+                    
+                    <div class="login-footer">
+                        <p>Don't have an account? <a href="#" onclick="showSignup()">Sign up</a></p>
+                        <p><a href="#" onclick="forgotPassword()">Forgot Password?</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Proctor Login Page -->
+    <div id="proctorLoginPage" class="page login-page">
+        <div class="login-container">
+            <div class="login-left">
+                <div class="library-background"></div>
+            </div>
+            <div class="login-right">
+                <div class="login-content">
+                    <button class="back-btn" onclick="backToRoleSelection()">← Back</button>
+                    <div class="logo">
+                        <div class="logo-circle" style="background: linear-gradient(135deg, #5a8c3e 0%, #3d7024 100%);">
+                            <span class="logo-text">SKIT</span>
+                        </div>
+                    </div>
+                    <h1>Proctor Login</h1>
+                    <p class="subtitle">Sri Krishna Institute of Technology</p>
+                    
+                    <form id="proctorLoginForm" class="login-form" onsubmit="handleLogin(event, 'proctor')">
+                        <div class="form-group">
+                            <label for="proctorEmail">Email Address</label>
+                            <input type="email" id="proctorEmail" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="proctorPassword">Password</label>
+                            <input type="password" id="proctorPassword" name="password" placeholder="Enter your password" required>
+                        </div>
+                        <div class="form-group checkbox">
+                            <input type="checkbox" id="proctorRemember" name="remember">
+                            <label for="proctorRemember">Remember me</label>
+                        </div>
+                        <button type="submit" class="login-btn">LOGIN</button>
+                    </form>
+                    
+                    <div class="login-footer">
+                        <p><a href="#" onclick="forgotPassword()">Forgot Password?</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Page -->
+    <div id="adminLoginPage" class="page login-page">
+        <div class="login-container">
+            <div class="login-left">
+                <div class="library-background"></div>
+            </div>
+            <div class="login-right">
+                <div class="login-content">
+                    <button class="back-btn" onclick="backToRoleSelection()">← Back</button>
+                    <div class="logo">
+                        <div class="logo-circle" style="background: linear-gradient(135deg, #c41e3a 0%, #a01530 100%);">
+                            <span class="logo-text"><img src=logo.png width="150%" height="150%"></span>
+                        </div>
+                    </div>
+                    <h1>Admin Login</h1>
+                    <p class="subtitle">Sri Krishna Institute of Technology</p>
+                    
+                    <form id="adminLoginForm" class="login-form" onsubmit="handleLogin(event, 'admin')">
+                        <div class="form-group">
+                            <label for="adminEmail">Email Address</label>
+                            <input type="email" id="adminEmail" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="adminPassword">Password</label>
+                            <input type="password" id="adminPassword" name="password" placeholder="Enter your password" required>
+                        </div>
+                        <div class="form-group checkbox">
+                            <input type="checkbox" id="adminRemember" name="remember">
+                            <label for="adminRemember">Remember me</label>
+                        </div>
+                        <button type="submit" class="login-btn">LOGIN</button>
+                    </form>
+                    
+                    <div class="login-footer">
+                        <p><a href="#" onclick="forgotPassword()">Forgot Password?</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home Dashboard Page -->
+    <div id="homePage" class="page">
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="navbar-logo">
+                    <div class="logo-icon"><img src=logo.png width="150%" height="150%"></div>
+                    <span>Smart Proctor Hub</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showPage('homePage')">Home</a></li>
+                    <li><a href="#" onclick="showPage('aboutPage')">About</a></li>
+                    <li><a href="#" onclick="showPage('contactPage')">Contact</a></li>
+                    <li><a href="#" onclick="logout()" class="logout-btn">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="home-hero">
+            <div class="library-bg"></div>
+            <div class="hero-overlay">
+                <div class="hero-content">
+                    <h1>Welcome to Smart Proctor Hub</h1>
+                    <p>Sri Krishna Institute of Technology</p>
+                    <button class="hero-btn" onclick="showPage('studentPage')">Enter Dashboard</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="institution-info">
+            <div class="info-section">
+                <h2>SRI KRISHNA INSTITUTE OF TECHNOLOGY</h2>
+                <p class="location"><strong>LOCATION:</strong> Chimney Hills, Hesarghatta Main Road, Chikkabanavara Post, Bangalore - 560090.</p>
+                
+                <div class="info-content">
+                    <div class="info-box">
+                        <h3>COURSES OFFERED</h3>
+                        <p>The institute primarily offers undergraduate (B.E./B.Tech) degrees in several specializations, including:</p>
+                        <ul>
+                            <li>Computer Science & Engineering</li>
+                            <li>Artificial Intelligence & Machine Learning</li>
+                            <li>Electronics & Communication Engineering</li>
+                            <li>Mechanical Engineering</li>
+                            <li>Information Science & Engineering</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>ADMISSIONS</h3>
+                        <p>Admission is typically based on entrance exams like KCET (College Code: E112) or COMEDK. The institute has modern facilities including smart classrooms, WiFi connectivity, a digital library, auditorium, amphitheater, and sports facilities.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>PLACEMENTS</h3>
+                        <p>Notable recruiters include companies like TCL, WIPRO, INFOSYS, IBM, and TCS. The highest reported package has reached approximately ₹12.5 LPA.</p>
+                    </div>
+
+                    <div class="info-box">
+                        <h3>CAMPUS FACILITIES</h3>
+                        <p>SKIT provides comprehensive facilities including smart classrooms, WiFi connectivity, a digital library, auditorium, amphitheater, and sports facilities for cricket, football, and basketball.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Proctor Dashboard Page -->
+    <div id="proctorPage" class="page">
+        <nav class="navbar navbar-proctor">
+            <div class="navbar-container">
+                <div class="navbar-logo">
+                    <div class="logo-icon"><img src=logo.png width="150%" height="150%"></div>
+                    <span>Proctor Dashboard</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showPage('proctorPage')" class="active">Dashboard</a></li>
+                    <li><a href="#" onclick="showPage('studentsPage')">My Students</a></li>
+                    <li><a href="#" onclick="showPage('examsMonitorPage')">Monitor Exams</a></li>
+                    <li><a href="#" onclick="showPage('proctorProfilePage')">Profile</a></li>
+                    <li><a href="#" onclick="logout()" class="logout-btn">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="proctor-dashboard">
+            <div class="dashboard-header">
+                <h1>Proctor Dashboard</h1>
+                <p id="proctorCurrentDate" class="current-date"></p>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="dashboard-card proctor-card">
+                    <div class="card-icon">👥</div>
+                    <h3>Total Students</h3>
+                    <p class="card-value">45</p>
+                    <button class="card-btn">Manage Students</button>
+                </div>
+
+                <div class="dashboard-card proctor-card">
+                    <div class="card-icon">📋</div>
+                    <h3>Exams Today</h3>
+                    <p class="card-value">3</p>
+                    <button class="card-btn">View Exams</button>
+                </div>
+
+                <div class="dashboard-card proctor-card">
+                    <div class="card-icon">✅</div>
+                    <h3>Exams Completed</h3>
+                    <p class="card-value">120</p>
+                    <button class="card-btn">View Reports</button>
+                </div>
+
+                <div class="dashboard-card proctor-card">
+                    <div class="card-icon">⚠️</div>
+                    <h3>Alerts</h3>
+                    <p class="card-value">2</p>
+                    <button class="card-btn">View Alerts</button>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="content-section">
+                    <h2>Students Under My Supervision</h2>
+                    <div class="students-table">
+                        <table>
+                            <tr>
+                                <th>USN</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Attendance</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>BCS21001</td>
+                                <td>John Doe</td>
+                                <td>john.doe@skit.edu.in</td>
+                                <td>92%</td>
+                                <td><span class="status-badge active">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>BCS21002</td>
+                                <td>Jane Smith</td>
+                                <td>jane.smith@skit.edu.in</td>
+                                <td>88%</td>
+                                <td><span class="status-badge active">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>BCS21003</td>
+                                <td>Alex Johnson</td>
+                                <td>alex.johnson@skit.edu.in</td>
+                                <td>85%</td>
+                                <td><span class="status-badge inactive">Inactive</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Recent Exam Monitoring</h2>
+                    <div class="monitoring-list">
+                        <div class="monitoring-item">
+                            <div class="exam-info">
+                                <h4>Data Structures Exam</h4>
+                                <p>Date: Feb 3, 2026 | Students: 15</p>
+                            </div>
+                            <div class="monitoring-status success">Completed</div>
+                        </div>
+                        <div class="monitoring-item">
+                            <div class="exam-info">
+                                <h4>Web Development Quiz</h4>
+                                <p>Date: Feb 4, 2026 | Students: 20</p>
+                            </div>
+                            <div class="monitoring-status in-progress">In Progress</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard Page -->
+    <div id="adminPage" class="page">
+        <nav class="navbar navbar-admin">
+            <div class="navbar-container">
+                <div class="navbar-logo">
+                    <div class="logo-icon"><img src=logo.png width="150%" height="150%"></div>
+                    <span>Admin Dashboard</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showPage('adminPage')" class="active">Dashboard</a></li>
+                    <li><a href="#" onclick="showPage('feeManagementPage')">Fee Management</a></li>
+                    <li><a href="#" onclick="showPage('allStudentsPage')">All Students</a></li>
+                    <li><a href="#" onclick="showPage('reportsPage')">Reports</a></li>
+                    <li><a href="#" onclick="logout()" class="logout-btn">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="admin-dashboard">
+            <div class="dashboard-header">
+                <h1>Administrator Dashboard</h1>
+                <p id="adminCurrentDate" class="current-date"></p>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="dashboard-card admin-card">
+                    <div class="card-icon">💰</div>
+                    <h3>Total Fee Received</h3>
+                    <p class="card-value">₹95L</p>
+                    <button class="card-btn">View Details</button>
+                </div>
+
+                <div class="dashboard-card admin-card">
+                    <div class="card-icon">📊</div>
+                    <h3>Total Students</h3>
+                    <p class="card-value">400</p>
+                    <button class="card-btn">View List</button>
+                </div>
+
+                <div class="dashboard-card admin-card">
+                    <div class="card-icon">⏳</div>
+                    <h3>Pending Fees</h3>
+                    <p class="card-value">₹15L</p>
+                    <button class="card-btn">Send Reminders</button>
+                </div>
+
+                <div class="dashboard-card admin-card">
+                    <div class="card-icon">👨‍🏫</div>
+                    <h3>Total Proctors</h3>
+                    <p class="card-value">25</p>
+                    <button class="card-btn">Manage Proctors</button>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="content-section">
+                    <h2>Fee Payment Status</h2>
+                    <div class="fee-table">
+                        <table>
+                            <tr>
+                                <th>USN</th>
+                                <th>Student Name</th>
+                                <th>Total Fee</th>
+                                <th>Paid</th>
+                                <th>Pending</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>BCS21001</td>
+                                <td>K Hiresh Rohan</td>
+                                <td>₹3,50,000</td>
+                                <td>₹3,50,000</td>
+                                <td>₹0</td>
+                                <td><span class="fee-status paid">Paid</span></td>
+                            </tr>
+                            <tr>
+                                <td>BCS21002</td>
+                                <td>Kallegowda DR</td>
+                                <td>₹3,50,000</td>
+                                <td>₹2,50,000</td>
+                                <td>₹1,00,000</td>
+                                <td><span class="fee-status partial">Partial</span></td>
+                            </tr>
+                            <tr>
+                                <td>BCS21003</td>
+                                <td>Karuna M M</td>
+                                <td>₹3,50,000</td>
+                                <td>₹0</td>
+                                <td>₹3,50,000</td>
+                                <td><span class="fee-status pending">Pending</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Recent Transactions</h2>
+                    <div class="transactions-list">
+                        <div class="transaction-item">
+                            <div class="transaction-info">
+                                <h4>Fee Payment by K Herish Rohan</h4>
+                                <p>Date: Feb 3, 2026 | Transaction ID: TXN123456</p>
+                            </div>
+                            <div class="transaction-amount">+₹3,50,000</div>
+                        </div>
+                        <div class="transaction-item">
+                            <div class="transaction-info">
+                                <h4>Fee Payment by Kallegowda DR</h4>
+                                <p>Date: Feb 2, 2026 | Transaction ID: TXN123455</p>
+                            </div>
+                            <div class="transaction-amount">+₹2,50,000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Dashboard Page -->
+    <div id="studentPage" class="page">
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="navbar-logo">
+                    <div class="logo-icon"><img src=logo.png width="150%" height="150%"></div>
+                    <span>Smart Proctor Hub</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showPage('homePage')">Home</a></li>
+                    <li><a href="#" onclick="showPage('studentPage')" class="active">Dashboard</a></li>
+                    <li><a href="#" onclick="showPage('examsPage')">Exams</a></li>
+                    <li><a href="#" onclick="showPage('profilePage')">Profile</a></li>
+                    <li><a href="#" onclick="logout()" class="logout-btn">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="student-dashboard">
+            <div class="dashboard-header">
+                <h1>Welcome, Student!</h1>
+                <p id="currentDate" class="current-date"></p>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <div class="card-icon">📚</div>
+                    <h3>Active Courses</h3>
+                    <p class="card-value">5</p>
+                    <button onclick="showPage('coursesPage')" class="card-btn">View Courses</button>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-icon">📝</div>
+                    <h3>Upcoming Exams</h3>
+                    <p class="card-value">3</p>
+                    <button onclick="showPage('examsPage')" class="card-btn">View Exams</button>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-icon">📊</div>
+                    <h3>Your GPA</h3>
+                    <p class="card-value">7.8</p>
+                    <button onclick="showPage('gradesPage')" class="card-btn">View Grades</button>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-icon">🎓</div>
+                    <h3>Attendance</h3>
+                    <p class="card-value">92%</p>
+                    <button onclick="showPage('attendancePage')" class="card-btn">View Details</button>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="content-section">
+                    <h2>Recent Assignments</h2>
+                    <div class="assignment-list">
+                        <div class="assignment-item">
+                            <div class="assignment-info">
+                                <h4>Data Structures - Assignment 1</h4>
+                                <p>Due: March 15, 2026</p>
+                            </div>
+                            <div class="assignment-status pending">Pending</div>
+                        </div>
+                        <div class="assignment-item">
+                            <div class="assignment-info">
+                                <h4>Web Development - Project 2</h4>
+                                <p>Due: March 20, 2026</p>
+                            </div>
+                            <div class="assignment-status pending">Pending</div>
+                        </div>
+                        <div class="assignment-item">
+                            <div class="assignment-info">
+                                <h4>Database Management - Lab Report</h4>
+                                <p>Due: March 10, 2026</p>
+                            </div>
+                            <div class="assignment-status completed">Completed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>Announcements</h2>
+                    <div class="announcements-list">
+                        <div class="announcement-item">
+                            <div class="announcement-date">Feb 4</div>
+                            <div class="announcement-content">
+                                <h4>Mid-term Exams Schedule Released</h4>
+                                <p>Check the exam schedule for the upcoming mid-term exams in your dashboard.</p>
+                            </div>
+                        </div>
+                        <div class="announcement-item">
+                            <div class="announcement-date">Feb 1</div>
+                            <div class="announcement-content">
+                                <h4>Library Services Update</h4>
+                                <p>The digital library has been updated with new resources and journals.</p>
+                            </div>
+                        </div>
+                        <div class="announcement-item">
+                            <div class="announcement-date">Jan 28</div>
+                            <div class="announcement-content">
+                                <h4>Placement Drive Announcement</h4>
+                                <p>Major companies will be visiting campus for recruitment. Register now!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exams Page -->
+    <div id="examsPage" class="page">
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="navbar-logo">
+                    <div class="logo-icon"><img src=logo.png width="150%" height="150%"></div>
+                    <span>Smart Proctor Hub</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showPage('homePage')">Home</a></li>
+                    <li><a href="#" onclick="showPage('studentPage')">Dashboard</a></li>
+                    <li><a href="#" onclick="showPage('examsPage')" class="active">Exams</a></li>
+                    <li><a href="#" onclick="logout()" class="logout-btn">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="exams-container">
+            <div class="page-header">
+                <h1>My Exams</h1>
+                <p>Schedule and prepare for your upcoming examinations</p>
+            </div>
+
+            <div class="exams-list">
+                <div class="exam-card">
+                    <div class="exam-header">
+                        <h3>Data Structures & Algorithms</h3>
+                        <span class="exam-badge upcoming">Upcoming</span>
+                    </div>
+                    <div class="exam-details">
+                        <p><strong>Date:</strong> March 15, 2026</p>
+                        <p><strong>Time:</strong> 2:00 PM - 4:00 PM</p>
+                        <p><strong>Duration:</strong> 2 Hours</p>
+                        <p><strong>Location:</strong> Lab 101</p>
+                    </div>
+                    <button class="exam-btn">Start Exam</button>
+                </div>
+
+                <div class="exam-card">
+                    <div class="exam-header">
+                        <h3>Web Development Fundamentals</h3>
+                        <span class="exam-badge upcoming">Upcoming</span>
+                    </div>
+                    <div class="exam-details">
+                        <p><strong>Date:</strong> March 18, 2026</p>
+                        <p><strong>Time:</strong> 10:00 AM - 12:00 PM</p>
+                        <p><strong>Duration:</strong> 2 Hours</p>
+                        <p><strong>Location:</strong> Lab 102</p>
+                    </div>
+                    <button class="exam-btn">Start Exam</button>
+                </div>
+
+                <div class="exam-card">
+                    <div class="exam-header">
+                        <h3>Database Management Systems</h3>
+                        <span class="exam-badge completed">Completed</span>
+                    </div>
+                    <div class="exam-details">
+                        <p><strong>Date:</strong> February 28, 2026</p>
+                        <p><strong>Score:</strong> 88/100</p>
+                        <p><strong>Duration:</strong> 2 Hours</p>
+                        <p><strong>Status:</strong> Graded</p>
+                    </div>
+                    <button class="exam-btn">View Results</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Page -->
+    <div id="profilePage" class="page">
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="navbar-logo">
+                    <div class="logo-icon"><img src="logo.png" height="150%" width="150%"></div>
+                    <span>Smart Proctor Hub</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showPage('homePage')">Home</a></li>
+                    <li><a href="#" onclick="showPage('studentPage')">Dashboard</a></li>
+                    <li><a href="#" onclick="showPage('profilePage')" class="active">Profile</a></li>
+                    <li><a href="#" onclick="logout()" class="logout-btn">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="profile-container">
+            <div class="page-header">
+                <h1>My Profile</h1>
+            </div>
+
+            <div class="profile-content">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <span>JD</span>
+                        </div>
+                        <div class="profile-info">
+                            <h2 id="studentName">K Hiresh Rohan</h2>
+                            <p id="studentId">USN: BCS21001</p>
+                        </div>
+                    </div>
+
+                    <div class="profile-details">
+                        <div class="detail-row">
+                            <label>Email:</label>
+                            <span id="studentEmail">khireshrohan@skit.org.in</span>
+                        </div>
+                        <div class="detail-row">
+                            <label>Phone:</label>
+                            <span>+91-9876543210</span>
+                        </div>
+                        <div class="detail-row">
+                            <label>Program:</label>
+                            <span>B.Tech in Computer Science & Engineering</span>
+                        </div>
+                        <div class="detail-row">
+                            <label>Semester:</label>
+                            <span>6th Semester</span>
+                        </div>
+                        <div class="detail-row">
+                            <label>CGPA:</label>
+                            <span>7.8</span>
+                        </div>
+                        <div class="detail-row">
+                            <label>Enrollment Date:</label>
+                            <span>sep 15, 2022</span>
+                        </div>
+                    </div>
+
+                    <button class="edit-btn" onclick="editProfile()">Edit Profile</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Page -->
+    <div id="aboutPage" class="page">
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="navbar-logo">
+                    <div class="logo-icon"><img src="logo.png" height="150%" width="150%"></div>
+                    <span>Smart Proctor Hub</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showPage('homePage')" class="active">Home</a></li>
+                    <li><a href="#" onclick="showPage('aboutPage')">About</a></li>
+                    <li><a href="#" onclick="showPage('contactPage')">Contact</a></li>
+                    <li><a href="#" onclick="logout()" class="logout-btn">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="about-container">
+            <div class="page-header">
+                <h1>About Sri Krishna Institute of Technology</h1>
+            </div>
+
+            <div class="about-content">
+                <section class="about-section">
+                    <h2>Institution Overview</h2>
+                    <p>Sri Krishna Institute of Technology (SKIT) is a premier engineering institute located in Bangalore, India. Located in the picturesque Chimney Hills area in Hesarghatta, the institute is known for its academic excellence and modern infrastructure.</p>
+                </section>
+
+                <section class="about-section">
+                    <h2>Our Mission</h2>
+                    <p>To provide world-class education in engineering and technology, fostering innovation, research, and professional excellence while developing socially responsible citizens.</p>
+                </section>
+
+                <section class="about-section">
+                    <h2>Why Choose SKIT?</h2>
+                    <ul>
+                        <li>Experienced faculty with industry expertise</li>
+                        <li>State-of-the-art laboratories and facilities</li>
+                        <li>Strong industry connections and placement records</li>
+                        <li>Focus on practical learning and research</li>
+                        <li>Comprehensive student support services</li>
+                        <li>International collaborations and opportunities</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contactPage" class="page">
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="navbar-logo">
+                    <div class="logo-icon"><img src=logo.png height="150%" width="150%"></div>
+                    <span>Smart Proctor Hub</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showPage('homePage')">Home</a></li>
+                    <li><a href="#" onclick="showPage('aboutPage')">About</a></li>
+                    <li><a href="#" onclick="showPage('contactPage')" class="active">Contact</a></li>
+                    <li><a href="#" onclick="logout()" class="logout-btn">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="contact-container">
+            <div class="page-header">
+                <h1>Contact Us</h1>
+                <p>Get in touch with us for any inquiries</p>
+            </div>
+
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-box">
+                        <h3>📍 Address</h3>
+                        <p>Chimney Hills, Hesarghatta Main Road<br>Chikkabanavara Post<br>Bangalore - 560090, India</p>
+                    </div>
+
+                    <div class="contact-box">
+                        <h3>📧 Email</h3>
+                        <p><a href="mailto:info@skit.edu.in">info@skit.org.in</a><br>
+                        <a href="mailto:admissions@skit.edu.in">admissions@skit.org.in</a></p>
+                    </div>
+
+                    <div class="contact-box">
+                        <h3>📱 Phone</h3>
+                        <p>+91-80-XXXX-XXXX<br>+91-80-XXXX-XXXX</p>
+                    </div>
+
+                    <div class="contact-box">
+                        <h3>🌐 Website</h3>
+                        <p><a href="https://www.skit.org.in" target="_blank">www.skit.org.in</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="contactFormElement">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
